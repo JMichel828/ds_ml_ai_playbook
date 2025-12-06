@@ -18,6 +18,7 @@ When It Appears in Interviews
 Core Template
 The most common approach uses ROW_NUMBER() differences:
 
+```sql
 WITH numbered AS (
     SELECT *,
            ROW_NUMBER() OVER (ORDER BY date_column)
@@ -30,6 +31,7 @@ GROUP BY user_id, grp;
 
 The grp column helps to identify consecutive sequences.
 ROW_NUMBER() differences produce a constant value for each island.
+```
 
 ---
 
