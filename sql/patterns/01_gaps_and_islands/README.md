@@ -28,16 +28,17 @@ WITH numbered AS (
 SELECT user_id, MIN(date_column) AS start_date, MAX(date_column) AS end_date
 FROM numbered
 GROUP BY user_id, grp;
+```
 
 The grp column helps to identify consecutive sequences.
 ROW_NUMBER() differences produce a constant value for each island.
-```
+
 
 ---
 
 Variants
 1. LAG-based session detection:
-
+git 
 CASE 
     WHEN date_column = LAG(date_column) OVER (PARTITION BY user_id ORDER BY date_column) + INTERVAL '1 day'
     THEN 0 
