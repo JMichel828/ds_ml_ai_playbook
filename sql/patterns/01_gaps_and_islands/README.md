@@ -18,7 +18,7 @@ When It Appears in Interviews
 Core Template
 The most common approach uses ROW_NUMBER() differences:
 
-```WITH numbered AS (
+WITH numbered AS (
     SELECT *,
            ROW_NUMBER() OVER (ORDER BY date_column)
          - ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY date_column) AS grp
@@ -26,7 +26,7 @@ The most common approach uses ROW_NUMBER() differences:
 )
 SELECT user_id, MIN(date_column) AS start_date, MAX(date_column) AS end_date
 FROM numbered
-GROUP BY user_id, grp;```
+GROUP BY user_id, grp;
 
 The grp column helps to identify consecutive sequences.
 ROW_NUMBER() differences produce a constant value for each island.
