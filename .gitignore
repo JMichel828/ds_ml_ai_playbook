@@ -1,0 +1,30 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+
+# ---- Virtual environments ----
+venv/
+.env/
+.envrc
+
+# ---- Jupyter notebooks ----
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# Optional: notebook outputs (keep notebooks clean)
+# Uncomment if you want output-free notebooks
+# **/*.ipynb
+
+# ---- OS / Editor ----
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ---- Logs / Temp ----
+*.log
+*.tmp
