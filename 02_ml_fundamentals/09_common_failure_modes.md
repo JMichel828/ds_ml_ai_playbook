@@ -1,158 +1,243 @@
-﻿# Common Machine Learning Failure Modes
+﻿# Common Machine Learning Failure Modes (Combined Reference)
 
 ## Purpose
 
-This document catalogs **frequently encountered ML failure modes** across the full
-modeling lifecycle. It is designed as both:
-- A long-term reference
-- An interview reasoning guide
+This document is a **single-source synthesis** of the most common machine learning failure modes.
+It focuses on **how ML systems break in practice**, why they break, and how strong practitioners
+anticipate and prevent these failures.
 
-This file is intentionally **Markdown-only** — judgment and diagnosis matter more than code here.
-
----
-
-## 1. Problem Framing Failures
-
-### Symptoms
-- Strong offline metrics, weak business impact
-- Model optimizes the wrong objective
-- Stakeholders dissatisfied despite “good performance”
-
-### Root Causes
-- Misaligned target variable
-- Proxy metrics poorly correlated with business outcomes
-- Ignoring constraints (latency, interpretability, risk)
-
-### Fixes
-- Revisit problem statement
-- Align metrics with decision-making
-- Validate assumptions with stakeholders
+Designed for:
+- Manager / Senior Manager interviews
+- Principal-level system thinking
+- Reviewing and debugging production ML systems
+- RAG ingestion (failure-pattern heavy, judgment-oriented)
 
 ---
 
-## 2. Data Failures
+## Why Failure Modes Matter
 
-### Symptoms
-- Model performance unstable
-- Large train–test gap
-- Sudden production degradation
+Most ML systems do not fail because of:
+- incorrect algorithms
+- insufficient compute
+- lack of sophistication
 
-### Root Causes
-- Data leakage
-- Label noise
-- Distribution shift
-- Missing or biased data
+They fail because of:
+- incorrect assumptions
+- silent data issues
+- misaligned incentives
+- organizational blind spots
 
-### Fixes
-- Strict train/test separation
-- Time-based splits where appropriate
-- Data validation and monitoring
+Strong ML leaders think **in failure modes**, not models.
 
 ---
 
-## 3. Feature Engineering Failures
+## 1. Data Leakage
 
-### Symptoms
-- High training performance, poor generalization
-- Model overly sensitive to certain features
+### What It Is
+Information from the future or target leaks into training.
 
-### Root Causes
-- Leakage via future information
-- Over-engineered features
-- Redundant or highly correlated features
+### Examples
+- Using post-outcome features
+- Aggregating over full history instead of cutoff date
+- Performing normalization before train-test split
 
-### Fixes
+### Why It’s Dangerous
+- Inflated offline metrics
+- Catastrophic production performance
+
+### Detection
+- Time-aware validation
 - Feature audits
-- Remove leaky features
-- Simpler representations
+- Suspiciously strong performance
 
 ---
 
-## 4. Modeling Failures
+## 2. Training–Serving Skew
 
-### Symptoms
-- Overfitting or underfitting
-- High variance across runs
+### What It Is
+Mismatch between training data and production inputs.
 
-### Root Causes
-- Model too complex or too simple
-- Poor regularization
-- Inadequate hyperparameter tuning
+### Examples
+- Different preprocessing logic
+- Feature definitions drift
+- Missing values handled differently
 
-### Fixes
-- Adjust complexity
-- Add regularization
-- Tune hyperparameters properly
-
----
-
-## 5. Evaluation Failures
-
-### Symptoms
-- Inflated metrics
-- Surprising real-world behavior
-
-### Root Causes
-- Wrong metrics
-- Test set contamination
-- Ignoring class imbalance
-
-### Fixes
-- Choose cost-aware metrics
-- Lock test sets
-- Use stratified or time-based evaluation
+### Prevention
+- Shared feature pipelines
+- End-to-end tests
+- Feature store usage
 
 ---
 
-## 6. Deployment & Monitoring Failures
+## 3. Distribution Shift
 
-### Symptoms
-- Model degrades silently
-- Predictions become unstable
-
-### Root Causes
-- No monitoring
-- Data drift
+### Types
+- Covariate shift
+- Label shift
 - Concept drift
 
-### Fixes
-- Drift detection
-- Retraining strategies
-- Monitoring dashboards
+### Example
+User behavior changes after product launch.
+
+### Mitigation
+- Monitoring input distributions
+- Periodic retraining
+- Robust feature design
 
 ---
 
-# Interview-Focused Guidance
+## 4. Metric Misalignment
 
-## How Interviewers Test This
+### What Happens
+Optimizing a metric that doesn’t reflect business value.
 
-- “What could go wrong with this model?”
-- “Why did this model fail in production?”
-- “How would you debug this?”
+### Examples
+- Optimizing AUC instead of cost
+- Ignoring false positive load
+- Local metrics vs system metrics
 
-They are testing **experience, judgment, and systems thinking**.
-
----
-
-## Strong Interview Framing
-
-> “I debug ML systems by checking problem framing first,
-> then data, then features, then modeling and evaluation.
-> Most failures happen before modeling.”
+### Fix
+Tie metrics directly to decisions.
 
 ---
 
-## Company Context Examples
+## 5. Overfitting to Validation
 
-- **Instacart**: feature leakage in demand forecasting
-- **Affirm**: stability and fairness failures in risk models
-- **Federato**: distribution shift in rare-event prediction
+### What It Is
+Repeated tuning to the same validation set.
+
+### Symptoms
+- Offline improvement, online stagnation
+- High variance across retrains
+
+### Prevention
+- Holdout test sets
+- Nested CV
+- Limited tuning iterations
 
 ---
 
-## Interview Checklist
+## 6. Feature Fragility
 
-- [ ] I can identify failure modes by lifecycle stage
-- [ ] I prioritize fixes from highest leverage to lowest
-- [ ] I focus on data and framing before models
-- [ ] I communicate tradeoffs clearly
+### Examples
+- Features dependent on upstream services
+- High-cardinality categorical features
+- Rare-event features
+
+### Risk
+Silent failures or instability.
+
+---
+
+## 7. Spurious Correlations
+
+### Example
+Weather correlates with demand but isn’t causal.
+
+### Danger
+Models break when environment changes.
+
+### Mitigation
+- Domain review
+- Causal reasoning
+- Stress testing
+
+---
+
+## 8. Poor Thresholding
+
+### What Happens
+Correct model, wrong decision rule.
+
+### Examples
+- Static thresholds
+- No ops alignment
+
+### Fix
+Threshold tuning with business input.
+
+---
+
+## 9. Ignoring Segment-Level Performance
+
+### Risk
+Overall metrics hide subgroup failures.
+
+### Mitigation
+- Slice metrics
+- Fairness audits
+
+---
+
+## 10. Monitoring Blind Spots
+
+### What’s Missed
+- Data drift
+- Latency spikes
+- Feedback loops
+
+### Fix
+Multi-layer monitoring.
+
+---
+
+## 11. Feedback Loops
+
+### Example
+Model decisions affect future training data.
+
+### Risk
+Runaway bias or collapse.
+
+---
+
+## 12. Organizational Failure Modes
+
+### Examples
+- No model ownership
+- Poor documentation
+- Lack of rollback plans
+
+ML systems fail socially before they fail technically.
+
+---
+
+## Interview Section
+
+### Common Questions
+- “Tell me about a model failure.”
+- “How do you prevent leakage?”
+- “How do you monitor models?”
+
+### Strong Answer Pattern
+
+> “I design systems with explicit failure assumptions,
+> monitor the right signals, and build rollback paths.”
+
+---
+
+## Manager vs Principal Lens
+
+- **Manager**: process, guardrails, team habits
+- **Principal**: system-level risk, invariants, long-term drift
+
+---
+
+## Why This Is Markdown-Only
+
+Failure modes:
+- Are conceptual
+- Span multiple systems
+- Require judgment over experimentation
+
+Notebooks add little value here.
+
+---
+
+## Final Checklist
+
+- [ ] I assume models will fail
+- [ ] I design with leakage prevention
+- [ ] I monitor inputs, outputs, and decisions
+- [ ] I align metrics with business reality
+- [ ] I can explain failures clearly in interviews

@@ -1,144 +1,283 @@
-﻿# Evaluation Metrics
+﻿# Evaluation Metrics (Combined Reference)
 
-## Definition
+## Purpose
 
-Evaluation metrics quantify how well a model performs relative to the problem being solved.
-Choosing the *right* metric is often more important than choosing the model itself.
+This document is a **single-source reference** for evaluation metrics used in machine learning.
+It combines **theory, intuition, code examples, and interview framing** into one markdown file.
 
-Different metrics emphasize different types of errors, tradeoffs, and business costs.
-
----
-
-## Why Metrics Matter
-
-- Models can look good under one metric and fail under another
-- Imbalanced data makes naive metrics misleading
-- Metrics encode business priorities implicitly
-
-> A good metric answers: *“What does success actually mean?”*
+Designed for:
+- Manager / Senior Manager interviews
+- On-the-job model review & decision-making
+- RAG ingestion (markdown-first knowledge base)
 
 ---
 
-## Common Classification Metrics
+## Why Evaluation Metrics Matter
+
+Evaluation metrics answer three different questions:
+
+1. *Is the model good?* (statistical performance)
+2. *Is the model useful?* (business impact)
+3. *Is the model safe to ship?* (failure modes)
+
+Strong candidates distinguish between all three.
+
+---
+
+## Metric Taxonomy
+
+### Regression
+- MAE
+- MSE / RMSE
+- R²
+- MAPE (with caveats)
+
+### Classification
+- Accuracy
+- Precision / Recall
+- F1
+- ROC-AUC
+- PR-AUC
+- Log Loss
+
+### Ranking / Scoring
+- Precision@K
+- Recall@K
+- NDCG
+- Lift
+
+---
+
+## Regression Metrics
+
+### Mean Absolute Error (MAE)
+
+**Definition**
+Average absolute difference between predictions and truth.
+
+**Why it’s useful**
+- Interpretable in original units
+- Robust to outliers compared to MSE
+
+```python
+import numpy as np
+
+y_true = np.array([100, 120, 130, 150])
+y_pred = np.array([110, 115, 140, 145])
+
+mae = np.mean(np.abs(y_true - y_pred))
+mae
+```
+
+**Pitfall**
+- Not differentiable at zero (rarely matters in practice)
+
+---
+
+### Mean Squared Error (MSE) / RMSE
+
+**Why squared error exists**
+- Penalizes large errors more heavily
+- Aligns with Gaussian noise assumptions
+
+```python
+mse = np.mean((y_true - y_pred) ** 2)
+rmse = np.sqrt(mse)
+rmse
+```
+
+**Manager insight**
+RMSE is sensitive to tail risk — great for catching catastrophic failures.
+
+---
+
+### R² (Coefficient of Determination)
+
+**What it measures**
+Fraction of variance explained relative to baseline mean model.
+
+```python
+ss_res = np.sum((y_true - y_pred) ** 2)
+ss_tot = np.sum((y_true - np.mean(y_true)) ** 2)
+r2 = 1 - ss_res / ss_tot
+r2
+```
+
+**Interview pitfall**
+Negative R² is possible and meaningful.
+
+---
+
+## Classification Metrics
 
 ### Accuracy
-Fraction of correct predictions.
 
-- Simple and intuitive
-- Often misleading with class imbalance
+**Definition**
+Correct predictions / total predictions.
 
-Use when:
-- Classes are balanced
-- Costs of false positives and false negatives are similar
+**Why it’s dangerous**
+Breaks under class imbalance.
 
----
+```python
+y_true = np.array([1,0,0,0,0])
+y_pred = np.array([0,0,0,0,0])
+accuracy = np.mean(y_true == y_pred)
+accuracy
+```
 
-### Precision
-Of predicted positives, how many were correct?
-
-High precision means:
-- Few false positives
-
-Use when:
-- False positives are costly
-- Example: fraud flags, spam detection
+95% accuracy, zero usefulness.
 
 ---
 
-### Recall (Sensitivity)
-Of actual positives, how many did we catch?
+### Precision & Recall
 
-High recall means:
-- Few false negatives
+- **Precision**: Of predicted positives, how many are correct?
+- **Recall**: Of actual positives, how many did we find?
 
-Use when:
-- Missing positives is costly
-- Example: disease detection, risk screening
+```python
+tp, fp, fn = 8, 2, 5
+precision = tp / (tp + fp)
+recall = tp / (tp + fn)
+precision, recall
+```
+
+**Tradeoff**
+You usually optimize one at the expense of the other.
 
 ---
 
 ### F1 Score
+
 Harmonic mean of precision and recall.
 
-Use when:
-- You need a single metric
-- Precision and recall are both important
+```python
+f1 = 2 * precision * recall / (precision + recall)
+f1
+```
+
+**Interview note**
+Only meaningful when precision and recall are both important.
 
 ---
 
-## Threshold-Dependent vs Threshold-Free Metrics
+### ROC-AUC
 
-- Accuracy, precision, recall → depend on classification threshold
-- ROC AUC → evaluates ranking across all thresholds
+**What it measures**
+Ranking ability across all thresholds.
 
----
+```python
+from sklearn.metrics import roc_auc_score
 
-## ROC AUC
+y_true = [0, 0, 1, 1]
+y_scores = [0.1, 0.4, 0.35, 0.8]
 
-Measures how well the model ranks positives above negatives.
+roc_auc_score(y_true, y_scores)
+```
 
-- Threshold-independent
-- Insensitive to class imbalance
-- Does **not** measure calibration
-
-High ROC AUC ≠ good probability estimates
-
----
-
-## Confusion Matrix
-
-The foundation for most classification metrics.
-
-|              | Predicted 0 | Predicted 1 |
-|--------------|-------------|-------------|
-| Actual 0     | TN          | FP          |
-| Actual 1     | FN          | TP          |
+**Pitfall**
+Insensitive to class imbalance severity.
 
 ---
 
-## Common Pitfalls
+### PR-AUC
 
-- Using accuracy on imbalanced data
-- Optimizing metrics without business context
-- Comparing metrics across different data distributions
-- Ignoring calibration when probabilities matter
+Better metric when positives are rare.
 
----
+```python
+from sklearn.metrics import average_precision_score
 
-# Interview-Focused Guidance
-
-## How Interviewers Test This
-
-- “Why is accuracy a bad metric here?”
-- “Would you optimize precision or recall?”
-- “Why choose ROC AUC over F1?”
-
-They are testing:
-- Metric intuition
-- Cost-sensitive thinking
-- Business alignment
+average_precision_score(y_true, y_scores)
+```
 
 ---
 
-## Strong Interview Framing
+### Log Loss
 
-> “I start by understanding the business cost of different errors.
-> That guides whether I care more about false positives, false negatives,
-> or ranking quality rather than a fixed threshold metric.”
+Measures probabilistic calibration.
+
+```python
+from sklearn.metrics import log_loss
+
+log_loss(y_true, y_scores)
+```
+
+**Manager takeaway**
+Log loss punishes overconfident wrong predictions.
 
 ---
 
-## Company Context Examples
+## Ranking Metrics
 
-- **Instacart**: ranking models → ROC AUC / NDCG
-- **Affirm**: risk models → recall vs default risk
-- **Federato**: insurance risk → precision vs stability
+### Precision@K
+
+```python
+import numpy as np
+
+y_true = np.array([1, 0, 1, 0, 1])
+y_scores = np.array([0.9, 0.8, 0.7, 0.4, 0.2])
+
+top_k = np.argsort(y_scores)[-3:]
+precision_at_k = y_true[top_k].mean()
+precision_at_k
+```
 
 ---
 
-## Interview Checklist
+### NDCG (Conceptual)
 
-- [ ] I can explain precision vs recall tradeoffs
-- [ ] I know when accuracy fails
-- [ ] I can justify ROC AUC vs thresholded metrics
-- [ ] I can tie metric choice to business impact
+- Rewards correct ordering
+- Discounted by rank position
+
+Used heavily in search & recommendation.
+
+---
+
+## Choosing the Right Metric (Framework)
+
+Ask:
+1. What decision is this model supporting?
+2. What is the cost of false positives vs false negatives?
+3. Is ranking more important than absolute correctness?
+4. Is calibration important?
+5. Who consumes the output?
+
+---
+
+## Model Comparison Pitfalls
+
+- Comparing metrics across different datasets
+- Optimizing proxy metrics
+- Ignoring variance / confidence intervals
+- Overfitting on validation metrics
+
+---
+
+## Interview Section (Fast Recall)
+
+### Common Interview Questions
+- “Accuracy vs AUC — when would you use each?”
+- “Why not always optimize F1?”
+- “What metric would you use for fraud detection?”
+- “How do you evaluate ranking models?”
+
+### Strong Answer Pattern
+> “Metric choice depends on class balance, decision cost, and how outputs are used downstream.”
+
+---
+
+## When Combined Files Make Sense
+
+This combined format works best when:
+- You want a **single searchable artifact**
+- You plan to use the repo as **RAG context**
+- You want **theory + code + interview framing together**
+- You value **reading over execution-first notebooks**
+
+---
+
+## Summary Checklist
+
+- [ ] I know when each metric is appropriate
+- [ ] I can explain tradeoffs clearly
+- [ ] I can spot misleading metrics
+- [ ] I can align metrics with business decisions

@@ -1,45 +1,180 @@
-﻿#  metrics design.Value.ToUpper() etrics  metrics design.Value.ToUpper() esign
+﻿# Metrics Design
 
 ## Definition
--
+
+Metrics design is the process of defining **what to measure**, **how to measure it**, and
+**how that measurement maps to a real business decision**. In experimentation, metrics
+are the lens through which impact is evaluated.
+
+Poor metrics lead to confident but wrong decisions.
 
 ---
 
-## When It Appears in Interviews
--
+## Why Metrics Design Matters
+
+- Metrics determine experiment outcomes
+- Misaligned metrics cause local optimization
+- Good metrics make tradeoffs explicit
+- Guardrails prevent silent regressions
+
+Rule of thumb:
+> If you cannot explain *why* a metric matters, you should not optimize it.
 
 ---
 
-## Core Ideas Known Cold
--
+## Types of Metrics
+
+### Primary Metric
+- Directly tied to the decision
+- Single source of truth
+- Optimized explicitly
+
+Examples:
+- Conversion rate
+- Revenue per user
+- Loss rate
 
 ---
 
-## How to Answer (Framework)
-1. Clarify the goal and metric
-2. Identify assumptions and constraints
-3. Explain the approach
-4. Call out pitfalls
-5. Describe validation
+### Guardrail Metrics
+- Ensure safety and stability
+- Must not regress meaningfully
+
+Examples:
+- Latency
+- Error rate
+- Cancellation rate
+
+---
+
+### Secondary / Diagnostic Metrics
+- Explain *why* the primary moved
+- Aid interpretation
+
+Examples:
+- Funnel step conversion
+- Engagement depth
+
+---
+
+## Good Metric Properties
+
+A strong metric should be:
+
+- **Directional** (up is good, down is bad)
+- **Sensitive** to change
+- **Stable** under noise
+- **Hard to game**
+- **Aligned** with long-term value
+
+---
+
+## Common Metric Traps
+
+- Proxy metrics with weak correlation to value
+- Composite metrics that hide tradeoffs
+- Metrics that saturate too early
+- Metrics that lag too far behind decisions
+
+---
+
+## Worked Example: Funnel Metrics
+
+### Scenario
+You are testing a checkout change.
+
+```python
+import pandas as pd
+
+data = {
+    "user_id": range(1, 11),
+    "viewed_checkout": [1,1,1,1,1,1,1,1,0,0],
+    "started_payment": [1,1,1,1,0,0,1,1,0,0],
+    "completed_purchase": [1,1,1,0,0,0,1,0,0,0]
+}
+
+df = pd.DataFrame(data)
+df
+```
+
+---
+
+### Funnel Conversion Rates
+
+```python
+conversion = {
+    "checkout_view_rate": df["viewed_checkout"].mean(),
+    "payment_start_rate": df["started_payment"].mean(),
+    "purchase_rate": df["completed_purchase"].mean()
+}
+
+conversion
+```
+
+---
+
+## Metric Decomposition
+
+Decompose metrics to:
+- Diagnose failures
+- Attribute effects
+- Guide iteration
+
+Example:
+> Purchase rate = view rate × payment start rate × completion rate
+
+---
+
+## Metric Alignment Across Teams
+
+Ensure:
+- Product metrics align with ML metrics
+- Short-term lifts don’t harm long-term value
+- Teams share definitions
+
+Misalignment is a common source of conflict.
 
 ---
 
 ## Common Pitfalls
--
+
+- Optimizing multiple primary metrics
+- Changing metrics mid-experiment
+- Ignoring variance and sensitivity
+- Overfitting decisions to noisy metrics
 
 ---
 
-## Mini Example
--
+# Interview-Focused Guidance
+
+## How Interviewers Test This
+
+- “What metric would you choose?”
+- “Why not metric X?”
+- “How would you know if this is a false positive?”
+
+They are testing decision clarity.
 
 ---
 
-## Practice Questions
--
+## Strong Interview Framing
+
+> “I start by defining the decision, then work backwards to a metric
+> that best captures long-term value while protecting guardrails.”
 
 ---
 
-## Checklist
-- [ ] I can explain this verbally
-- [ ] I know alternatives
-- [ ] I know failure modes
+## Company Context Examples
+
+- **Instacart**: order completion vs basket size
+- **Affirm**: approval rate vs loss rate
+- **Federato**: quote conversion vs risk exposure
+
+---
+
+## Interview Checklist
+
+- [ ] I can articulate why a metric matters
+- [ ] I can define guardrails
+- [ ] I can decompose metrics
+- [ ] I understand tradeoffs

@@ -1,147 +1,244 @@
-﻿# Hyperparameter Tuning
+﻿# Hyperparameter Tuning (Combined Reference)
 
-## Definition
+## Purpose
 
-Hyperparameters are configuration choices **set before training** that control model
-behavior, complexity, and learning dynamics. Hyperparameter tuning is the process of
-selecting values that optimize generalization performance.
+This document is a **single-source reference** for hyperparameter tuning.
+It combines **intuition, practical strategies, code examples, failure modes,
+and interview framing** into one markdown file.
 
-Unlike parameters, hyperparameters are **not learned directly from data**.
+Designed for:
+- Manager / Senior Manager interviews
+- Designing reliable model training workflows
+- Long-term ML reference
+- RAG ingestion (markdown-first corpus)
 
 ---
 
 ## Why Hyperparameter Tuning Matters
 
-- Poor hyperparameters can make good models fail
-- Default values are rarely optimal
-- Tuning controls the bias–variance tradeoff
+Hyperparameters control **how models learn**, not **what they learn**.
 
-Rule of thumb:
-> Model performance is often limited more by hyperparameters than by model choice.
+Poor tuning can:
+- Mask true model performance
+- Cause overfitting or underfitting
+- Waste massive compute budgets
 
----
-
-## Common Hyperparameters (By Model Family)
-
-### Linear / Regularized Models
-- Regularization strength (alpha, C)
-- Penalty type (L1, L2, ElasticNet)
+> Tuning is an optimization problem under uncertainty and cost constraints.
 
 ---
 
-### Tree-Based Models
-- max_depth
-- min_samples_split
-- min_samples_leaf
-- n_estimators (ensembles)
-- learning_rate (boosting)
+## Parameters vs Hyperparameters
 
----
+- **Parameters**: learned from data (weights, splits)
+- **Hyperparameters**: set before training (depth, lambda, learning rate)
 
-### k-NN
-- Number of neighbors (k)
-- Distance metric
-
----
-
-### Neural Networks
+Examples:
+- Regularization strength
+- Tree depth
 - Learning rate
-- Number of layers / units
-- Batch size
-- Regularization terms
+- Number of estimators
 
 ---
 
-## Tuning Strategies
+## Bias–Variance Lens
 
-### Manual / Heuristic Tuning
-- Fast
-- Relies on intuition
-- Limited scalability
+| Hyperparameter Effect |
+|----------------------|
+| Increase regularization → ↑ bias, ↓ variance |
+| Increase model complexity → ↓ bias, ↑ variance |
+| Increase data per leaf → ↑ bias, ↓ variance |
+| Increase estimators → ↓ variance (up to a point) |
 
----
-
-### Grid Search
-- Exhaustive search over a fixed grid
-- Simple but expensive
-- Scales poorly with many parameters
+Understanding this is more important than any algorithm.
 
 ---
 
-### Random Search
-- Samples hyperparameters randomly
-- More efficient than grid search
-- Often finds good solutions faster
+## Grid Search
+
+### What It Is
+Exhaustive search over predefined parameter grid.
+
+```python
+from sklearn.model_selection import GridSearchCV
+from sklearn.ensemble import RandomForestClassifier
+
+param_grid = {
+    "max_depth": [3, 5, None],
+    "min_samples_leaf": [1, 5, 10]
+}
+
+gs = GridSearchCV(
+    RandomForestClassifier(n_estimators=200, random_state=42),
+    param_grid,
+    cv=5,
+    scoring="roc_auc"
+)
+
+gs.fit(X, y)
+gs.best_params_
+```
+
+### Pros / Cons
+- ✅ Simple, deterministic
+- ❌ Expensive, scales poorly
 
 ---
 
-### Bayesian Optimization
-- Models the objective function
-- Chooses promising hyperparameters adaptively
-- More sample-efficient
+## Random Search
+
+Samples randomly from parameter distributions.
+
+```python
+from sklearn.model_selection import RandomizedSearchCV
+from scipy.stats import randint
+
+param_dist = {
+    "max_depth": randint(3, 20),
+    "min_samples_leaf": randint(1, 20)
+}
+
+rs = RandomizedSearchCV(
+    RandomForestClassifier(n_estimators=200, random_state=42),
+    param_dist,
+    n_iter=30,
+    cv=5,
+    scoring="roc_auc",
+    random_state=42
+)
+
+rs.fit(X, y)
+rs.best_params_
+```
+
+### Why It Works
+- Explores more unique configurations
+- Finds good regions faster
 
 ---
 
-## Cross-Validation and Tuning
+## Bayesian Optimization (Conceptual)
 
-Hyperparameter tuning must be:
-- Nested within cross-validation
-- Performed only on training data
+Uses prior results to guide future searches.
 
-Never tune on the test set.
+Common tools:
+- Optuna
+- Hyperopt
+- Ax / BoTorch
+
+```python
+# Conceptual example (Optuna-style)
+def objective(trial):
+    depth = trial.suggest_int("max_depth", 3, 20)
+    lr = trial.suggest_float("learning_rate", 0.01, 0.3)
+
+    model = GradientBoostingClassifier(
+        max_depth=depth,
+        learning_rate=lr
+    )
+    return cross_val_score(model, X, y, cv=3).mean()
+```
+
+### Manager Insight
+Bayesian tuning trades **compute for intelligence**.
 
 ---
 
-## Hyperparameters and Bias–Variance
+## Cross-Validation Strategy
 
-- Increasing model complexity → ↓ bias, ↑ variance
-- Regularization hyperparameters control this tradeoff
-- Tuning is bias–variance management at scale
+### k-Fold CV
+- Good default
+- Assumes i.i.d. data
+
+### Time-Based CV
+- Required for temporal data
+- Prevents leakage
+
+```python
+from sklearn.model_selection import TimeSeriesSplit
+
+tscv = TimeSeriesSplit(n_splits=5)
+```
 
 ---
 
-## Common Pitfalls
+## Early Stopping
 
-- Tuning on the test set
+Prevents overfitting and saves compute.
+
+```python
+from sklearn.ensemble import GradientBoostingClassifier
+
+gb = GradientBoostingClassifier(
+    n_estimators=500,
+    learning_rate=0.05,
+    n_iter_no_change=10
+)
+```
+
+---
+
+## Nested Cross-Validation
+
+Used when tuning and evaluating simultaneously.
+
+```python
+# Conceptual pattern
+# Outer loop: evaluation
+# Inner loop: hyperparameter tuning
+```
+
+**Interview Insight**
+Avoids optimistic bias in reported metrics.
+
+---
+
+## Common Failure Modes
+
+- Tuning on test set
 - Overfitting validation data
-- Searching unnecessarily large spaces
-- Ignoring training cost and latency
+- Ignoring metric variance
+- Using default CV for time series
+- Optimizing proxy metrics
 
 ---
 
-# Interview-Focused Guidance
+## Manager-Level Decision Framing
 
-## How Interviewers Test This
-
-- “How would you tune this model?”
-- “Grid vs random search?”
-- “Why not tune everything?”
-
-They are testing:
-- Practical ML judgment
-- Computational awareness
-- Experimental discipline
+Managers should ask:
+- What metric are we optimizing?
+- How stable are results across folds?
+- What is the compute cost vs expected gain?
+- Are gains statistically meaningful?
 
 ---
 
-## Strong Interview Framing
+## Interview Section
 
-> “I start with reasonable defaults, then use random search with cross-validation
-> to explore sensitive hyperparameters, balancing performance with cost.”
+### Common Questions
+- “Grid vs random search — why?”
+- “How do you avoid overfitting during tuning?”
+- “What is nested cross-validation?”
+
+### Strong Answer Pattern
+
+> “I treat tuning as a bias–variance and cost optimization problem,
+> using cross-validation and early stopping to avoid overfitting.”
 
 ---
 
-## Company Context Examples
+## When Combined Files Make Sense
 
-- **Instacart**: tuning tree depth and learning rates
-- **Affirm**: conservative tuning for stability and compliance
-- **Federato**: balancing performance vs robustness on sparse data
+Hyperparameter tuning benefits from combined format because:
+- Concepts + code reinforce each other
+- Interview framing relies on intuition
+- RAG systems need full context
 
 ---
 
-## Interview Checklist
+## Summary Checklist
 
-- [ ] I can explain grid vs random vs Bayesian search
-- [ ] I know where cross-validation fits
-- [ ] I avoid tuning on the test set
-- [ ] I consider cost and latency
+- [ ] I understand tuning strategies
+- [ ] I can choose CV correctly
+- [ ] I avoid tuning leakage
+- [ ] I can explain tuning decisions clearly
+- [ ] I account for compute constraints
