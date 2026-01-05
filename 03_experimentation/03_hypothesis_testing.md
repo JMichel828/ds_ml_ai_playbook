@@ -249,7 +249,6 @@ Common corrections:
 
 - **Instacart**: noisy conversion experiments
 - **Affirm**: credit risk model comparisons
-- **Federato**: underwriting experiments with limited samples
 
 ---
 

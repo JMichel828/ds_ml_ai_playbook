@@ -190,7 +190,6 @@ Use ML predictions as covariates (more flexible CUPED).
 
 - **Instacart**: adjust checkout metrics using prior spend
 - **Affirm**: adjust approval / conversion using pre-period behavior
-- **Federato**: underwriting metrics adjusted using prior quote history
 
 ---
 

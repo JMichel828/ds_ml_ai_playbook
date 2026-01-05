@@ -229,7 +229,6 @@ Examples:
 
 - **Instacart**: pricing experiments without randomization
 - **Affirm**: policy changes with selection bias
-- **Federato**: underwriting rule changes
 
 ---
 

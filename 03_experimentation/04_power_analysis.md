@@ -188,7 +188,6 @@ sample_size
 
 - **Instacart**: detecting small checkout improvements
 - **Affirm**: approval rate experiments with low base rates
-- **Federato**: underwriting experiments with sparse data
 
 ---
 

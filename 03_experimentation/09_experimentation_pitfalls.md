@@ -224,7 +224,6 @@ Symptoms:
 
 - **Instacart**: marketplace balance masking negative effects
 - **Affirm**: policy changes altering eligibility
-- **Federato**: selection bias in underwriting experiments
 
 ---
 

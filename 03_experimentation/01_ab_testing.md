@@ -192,7 +192,6 @@ Statistical significance does not imply business significance.
 
 - **Instacart**: checkout and search experiments
 - **Affirm**: approval flow experiments balancing conversion and risk
-- **Federato**: underwriting rule experiments with small samples
 
 ---
 

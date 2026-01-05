@@ -125,14 +125,43 @@ Example:
 
 ---
 
+## Metric Sensitivity and Variance
+
+Metrics with high variance require larger samples to detect changes.
+
+```python
+import numpy as np
+
+np.random.seed(0)
+
+metric_high_var = np.random.normal(100, 50, 1000)
+metric_low_var = np.random.normal(100, 5, 1000)
+
+metric_high_var.std(), metric_low_var.std()
+```
+
+---
+
+## Ratio Metric Instability
+
+Ratio metrics can be noisy and misleading.
+
+```python
+numerator = np.random.poisson(5, 1000)
+denominator = np.random.poisson(1, 1000)
+
+ratio = numerator / np.maximum(denominator, 1)
+ratio.mean(), ratio.std()
+```
+
+---
+
 ## Metric Alignment Across Teams
 
 Ensure:
 - Product metrics align with ML metrics
 - Short-term lifts don’t harm long-term value
 - Teams share definitions
-
-Misalignment is a common source of conflict.
 
 ---
 
@@ -153,13 +182,11 @@ Misalignment is a common source of conflict.
 - “Why not metric X?”
 - “How would you know if this is a false positive?”
 
-They are testing decision clarity.
-
 ---
 
 ## Strong Interview Framing
 
-> “I start by defining the decision, then work backwards to a metric
+> “I define the decision first, then work backwards to a metric
 > that best captures long-term value while protecting guardrails.”
 
 ---
@@ -168,7 +195,6 @@ They are testing decision clarity.
 
 - **Instacart**: order completion vs basket size
 - **Affirm**: approval rate vs loss rate
-- **Federato**: quote conversion vs risk exposure
 
 ---
 
@@ -177,4 +203,4 @@ They are testing decision clarity.
 - [ ] I can articulate why a metric matters
 - [ ] I can define guardrails
 - [ ] I can decompose metrics
-- [ ] I understand tradeoffs
+- [ ] I understand variance and sensitivity

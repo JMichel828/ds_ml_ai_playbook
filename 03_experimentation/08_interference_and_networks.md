@@ -232,7 +232,6 @@ Used to measure:
 
 - **Instacart**: supply-demand coupling
 - **Affirm**: fraud model actions affecting approval pools
-- **Federato**: underwriting decisions affecting market behavior
 
 ---
 
