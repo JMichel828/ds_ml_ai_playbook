@@ -12,7 +12,7 @@ Functions include:
 
 ---
 
-## When It Appears in Interviews
+## When It Typically Appears
 - Finding the top performer per group
 - Identifying the 2nd/3rd highest metric
 - Breaking ties or preserving them depending on function
@@ -82,7 +82,7 @@ Bob      | A          | 100   | 1
 Carol    | A          | 80    | 3
 Dave     | B          | 70    | 1
 Eve      | B          | 50    | 2
-```
+
 
 # Deduplication Using Window Functions
 
@@ -156,5 +156,5 @@ Output:
 user_id | ts
 --------|-----------
 1       | 2023-01-03
-```
+
 

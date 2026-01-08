@@ -1,6 +1,6 @@
 # Pivot & Unpivot
 
-Definition
+## Definition
 Pivot and unpivot are SQL patterns used to reshape data between long (row-based) and wide (column-based) formats.
 
 - Pivot turns rows into columns (categorical values become columns).
@@ -10,7 +10,7 @@ These patterns are common in reporting, analytics, and feature engineering.
 
 ---
 
-When It Appears in Interviews
+## When It Typically Appears
 - Transforming event-level data into summary tables
 - Converting category rows into KPI columns
 - Preparing data for dashboards or reports
@@ -80,7 +80,7 @@ UNPIVOT (
 
 ---
 
-Variants
+## Variants
 
 1. Pivot with Counts Instead of Sums
 ```sql
@@ -95,7 +95,7 @@ Use MAX instead of SUM when values are mutually exclusive.
 
 ---
 
-Pitfalls
+## Pitfalls
 - Hardcoding categories reduces flexibility
 - NULL handling can affect aggregates
 - PIVOT / UNPIVOT syntax is not portable across all SQL engines
@@ -103,7 +103,7 @@ Pitfalls
 
 ---
 
-Mini Example
+## Mini Example
 
 Input Table:
 

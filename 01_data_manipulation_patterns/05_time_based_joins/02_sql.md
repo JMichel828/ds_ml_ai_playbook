@@ -6,7 +6,7 @@ Time-based joins are used when you want to join two tables based on timestamps r
 
 ---
 
-## When to Use
+## When It Typically Appears
 - Slowly changing dimensions (SCD Type 2 lookups)
 - Matching events to nearest timestamp
 - Joining sessions to activity logs

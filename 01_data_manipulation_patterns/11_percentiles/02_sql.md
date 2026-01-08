@@ -1,13 +1,13 @@
 # Percentiles & Quantiles
 
-Definition
+## Definition
 Percentiles are statistical measures that describe the relative standing of a value within a distribution.
 In SQL, percentiles are commonly used to understand distributions, outliers, medians, and thresholds.
 Typical use cases include latency analysis, compensation bands, spend distribution, and performance metrics.
 
 ---
 
-When It Appears in Interviews
+## When It Typically Appears
 - Finding medians (50th percentile)
 - Computing p90 / p95 / p99 latency metrics
 - Identifying outliers or long tails
@@ -16,7 +16,7 @@ When It Appears in Interviews
 
 ---
 
-Core Template (Continuous Percentiles)
+## Core Template (Continuous Percentiles)
 Most databases support ordered-set aggregates such as `PERCENTILE_CONT`.
 
 ```sql
@@ -33,7 +33,7 @@ Common percentiles:
 
 ---
 
-Core Template (Grouped Percentiles)
+## Core Template (Grouped Percentiles)
 Calculate percentiles per group.
 
 ```sql
@@ -59,7 +59,7 @@ FROM table_name;
 
 ---
 
-Variants
+## Variants
 
 1. Discrete Percentiles
 Returns an actual observed value.
@@ -91,7 +91,7 @@ APPROX_PERCENTILE(value, 0.95)
 
 ---
 
-Pitfalls
+## Pitfalls
 - Continuous percentiles may interpolate values
 - Discrete percentiles may not represent true medians
 - NTILE produces equal row counts, not equal value ranges
@@ -100,7 +100,7 @@ Pitfalls
 
 ---
 
-Mini Example
+## Mini Example
 
 ```sql
 WITH response_times AS (

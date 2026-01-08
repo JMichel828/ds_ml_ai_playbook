@@ -8,7 +8,7 @@ It’s used to pivot data, compute multiple metrics in one scan, or generate KPI
 
 ---
 
-## When It Appears in Interviews
+## When It Typically Appears
 
 - Computing multi-metric summaries by group  
   (e.g., number of active vs inactive users)

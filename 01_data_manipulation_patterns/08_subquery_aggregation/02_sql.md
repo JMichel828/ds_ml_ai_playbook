@@ -1,6 +1,6 @@
 # Subquery Aggregation
 
-Definition
+## Definition
 Subquery aggregation is a SQL pattern where an aggregate calculation is performed in a subquery
 and then joined or referenced by an outer query. It is used when aggregations must occur
 before additional joins, filters, or calculations.
@@ -12,7 +12,7 @@ This pattern is especially useful when:
 
 ---
 
-When It Appears in Interviews
+## When It Typically Appears
 - Calculating per-user metrics before joining to dimensional data
 - Comparing row-level values to group-level aggregates
 - Finding rows above/below an average or threshold
@@ -21,7 +21,7 @@ When It Appears in Interviews
 
 ---
 
-Core Template
+## Core Template
 Aggregate first, then join or filter:
 
 ```sql
@@ -44,7 +44,7 @@ The subquery establishes the correct level of aggregation before rejoining.
 
 ---
 
-Variants
+## Variants
 
 1. Scalar Subquery
 Used when the aggregate returns a single value.
@@ -84,7 +84,7 @@ FROM orders o1;
 
 ---
 
-Pitfalls
+## Pitfalls
 - Correlated subqueries can be slow on large datasets
 - Forgetting GROUP BY causes invalid or incorrect aggregates
 - Subqueries may be rewritten as joins for better performance
@@ -92,7 +92,7 @@ Pitfalls
 
 ---
 
-Mini Example
+## Mini Example
 
 ```sql
 WITH user_totals AS (

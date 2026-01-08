@@ -1,12 +1,12 @@
 # Running Totals
 
-Definition  
+## Definition  
 Running totals (also called cumulative sums) compute a progressively increasing total over an ordered sequence of rows.
 They are commonly used for revenue-to-date, balances, cumulative counts, and time-series KPIs.
 
 ---
 
-When It Appears in Interviews
+## When It Typically Appears
 - Calculating cumulative revenue or spend
 - Tracking running balances or inventory
 - Generating cumulative user or event counts
@@ -15,7 +15,7 @@ When It Appears in Interviews
 
 ---
 
-Core Template
+## Core Template
 
 ```sql
 SELECT
@@ -30,7 +30,7 @@ FROM table_name;
 
 ---
 
-Partitioned Running Totals
+## Partitioned Running Totals
 
 ```sql
 SELECT
@@ -47,7 +47,7 @@ FROM table_name;
 
 ---
 
-Variants
+## Variants
 
 1. Running Count
 ```sql
@@ -75,7 +75,7 @@ SUM(value) OVER (
 
 ---
 
-Pitfalls
+## Pitfalls
 - Missing ORDER BY leads to incorrect cumulative results
 - Duplicate timestamps cause nondeterministic ordering
 - RANGE vs ROWS behaves differently with ties
@@ -83,7 +83,7 @@ Pitfalls
 
 ---
 
-Mini Example
+## Mini Example
 
 ```sql
 WITH sales AS (

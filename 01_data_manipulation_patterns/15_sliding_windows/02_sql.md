@@ -1,6 +1,6 @@
 # Sliding Windows (Moving Windows)
 
-Definition
+## Definition
 Sliding windows (also called moving windows) are SQL patterns that compute metrics over a moving
 range of rows relative to the current row. Unlike running totals, which always start from the
 beginning, sliding windows move forward as the row advances.
@@ -9,7 +9,7 @@ They are commonly used for rolling averages, rolling sums, and trend smoothing.
 
 ---
 
-When It Appears in Interviews
+## When It Typically Appears
 - 7-day / 30-day rolling averages
 - Moving sums for revenue or usage
 - Trend detection and smoothing
@@ -18,7 +18,7 @@ When It Appears in Interviews
 
 ---
 
-Core Template
+## Core Template
 
 ```sql
 SELECT
@@ -35,7 +35,7 @@ This computes a rolling metric using a fixed number of rows.
 
 ---
 
-Time-Based Sliding Windows
+## Time-Based Sliding Windows
 Use RANGE for time-based windows (supported in some databases).
 
 ```sql
@@ -69,7 +69,7 @@ FROM events;
 
 ---
 
-Variants
+## Variants
 
 1. Rolling Sum
 ```sql
@@ -97,7 +97,7 @@ AVG(value) OVER (
 
 ---
 
-Pitfalls
+## Pitfalls
 - ROWS counts physical rows, not time intervals
 - RANGE behavior differs by SQL engine
 - Missing dates can distort rolling metrics
@@ -106,7 +106,7 @@ Pitfalls
 
 ---
 
-Mini Example
+## Mini Example
 
 ```sql
 WITH daily_sales AS (

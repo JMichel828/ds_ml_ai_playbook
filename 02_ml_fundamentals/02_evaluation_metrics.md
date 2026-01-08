@@ -1,15 +1,5 @@
 ﻿# Evaluation Metrics (Combined Reference)
 
-## Purpose
-
-This document is a **single-source reference** for evaluation metrics used in machine learning.
-It combines **theory, intuition, code examples, and interview framing** into one markdown file.
-
-Designed for:
-- Manager / Senior Manager interviews
-- On-the-job model review & decision-making
-- RAG ingestion (markdown-first knowledge base)
-
 ---
 
 ## Why Evaluation Metrics Matter
@@ -19,8 +9,6 @@ Evaluation metrics answer three different questions:
 1. *Is the model good?* (statistical performance)
 2. *Is the model useful?* (business impact)
 3. *Is the model safe to ship?* (failure modes)
-
-Strong candidates distinguish between all three.
 
 ---
 
@@ -155,7 +143,7 @@ f1 = 2 * precision * recall / (precision + recall)
 f1
 ```
 
-**Interview note**
+**Additional note**
 Only meaningful when precision and recall are both important.
 
 ---
@@ -201,7 +189,7 @@ from sklearn.metrics import log_loss
 log_loss(y_true, y_scores)
 ```
 
-**Manager takeaway**
+**Takeaway**
 Log loss punishes overconfident wrong predictions.
 
 ---
@@ -250,34 +238,4 @@ Ask:
 - Ignoring variance / confidence intervals
 - Overfitting on validation metrics
 
----
 
-## Interview Section (Fast Recall)
-
-### Common Interview Questions
-- “Accuracy vs AUC — when would you use each?”
-- “Why not always optimize F1?”
-- “What metric would you use for fraud detection?”
-- “How do you evaluate ranking models?”
-
-### Strong Answer Pattern
-> “Metric choice depends on class balance, decision cost, and how outputs are used downstream.”
-
----
-
-## When Combined Files Make Sense
-
-This combined format works best when:
-- You want a **single searchable artifact**
-- You plan to use the repo as **RAG context**
-- You want **theory + code + interview framing together**
-- You value **reading over execution-first notebooks**
-
----
-
-## Summary Checklist
-
-- [ ] I know when each metric is appropriate
-- [ ] I can explain tradeoffs clearly
-- [ ] I can spot misleading metrics
-- [ ] I can align metrics with business decisions

@@ -1,6 +1,6 @@
 # Nested Window Functions
 
-Definition
+## Definition
 Nested window functions refer to SQL patterns where the output of one window function
 is used as input to another calculation, typically by layering window functions
 across subqueries or CTEs. Since most SQL dialects do not allow window functions
@@ -11,7 +11,7 @@ running totals of aggregates, or percent-of-total calculations.
 
 ---
 
-When It Appears in Interviews
+## When It Typically Appears
 - Ranking within ranked groups
 - Percent-of-total or share-of-total calculations
 - Running totals of daily aggregates
@@ -20,7 +20,7 @@ When It Appears in Interviews
 
 ---
 
-Core Template
+## Core Template
 The pattern uses multiple query layers:
 
 ```sql
@@ -45,7 +45,7 @@ Each layer applies a single window function, enabling complex logic step by step
 
 ---
 
-Variants
+## Variants
 
 1. Percent of Total
 ```sql
@@ -92,7 +92,7 @@ FROM filtered;
 
 ---
 
-Pitfalls
+## Pitfalls
 - Window functions cannot be nested directly in most SQL engines
 - Forgetting to alias window outputs breaks later layers
 - Ordering inconsistencies compound across layers
@@ -101,7 +101,7 @@ Pitfalls
 
 ---
 
-Mini Example
+## Mini Example
 
 ```sql
 WITH user_spend AS (

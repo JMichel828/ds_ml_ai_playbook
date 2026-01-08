@@ -1,11 +1,11 @@
 # Window Functions
 
-Definition
+## Definition
 Window functions perform calculations across a set of rows that are related to the current row — without collapsing them into a single aggregated result. They allow ranking, running totals, moving averages, time-based comparisons, and more.
 
 ---
 
-When It Appears in Interviews
+## When It Typically Appears
 - Ranking customers, products, or events
 - Finding previous/next values using LAG/LEAD
 - Calculating running totals or moving averages
@@ -15,7 +15,7 @@ When It Appears in Interviews
 
 ---
 
-Core Template
+## Core Template
 
 ```sql
 SELECT
@@ -28,14 +28,14 @@ SELECT
 FROM table_name;
 ```
 
-Key Components:
+## Key Components:
 - **PARTITION BY**: Splits rows into groups
 - **ORDER BY**: Specifies ordering within each group
 - **Frame clause**: Controls range of rows included (e.g., running totals)
 
 ---
 
-Most Common Window Functions
+## Most Common Window Functions
 
 ### 1. ROW_NUMBER(), RANK(), DENSE_RANK()
 Used for ranking or deduplication.
@@ -60,7 +60,7 @@ SUM(sales) OVER (ORDER BY date) AS running_sales
 
 ---
 
-Variants
+## Variants
 - **Frame definitions**: ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
 - **Value-based windows**: RANGE BETWEEN INTERVAL '7 days' PRECEDING AND CURRENT ROW
 - **Percentile functions**: PERCENT_RANK(), NTILE()
@@ -68,7 +68,7 @@ Variants
 
 ---
 
-Pitfalls
+## Pitfalls
 - Forgetting ORDER BY results in meaningless window calculations
 - ROW_NUMBER vs RANK differences causing unexpected gaps
 - Frame clauses producing surprising results if not specified
@@ -77,7 +77,7 @@ Pitfalls
 
 ---
 
-Mini Example
+## Mini Example
 
 ```sql
 WITH sales AS (

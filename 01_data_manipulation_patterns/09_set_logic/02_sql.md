@@ -1,13 +1,13 @@
 # Set Logic (Set Operations)
 
-Definition
+## Definition
 Set logic refers to SQL operations that treat query results as mathematical sets.
 These operations combine, compare, or subtract result sets rather than joining rows.
 The most common set operators are UNION, UNION ALL, INTERSECT, and EXCEPT (or MINUS).
 
 ---
 
-When It Appears in Interviews
+## When It Typically Appears
 - Comparing two datasets to find overlap or differences
 - Identifying users who did one action but not another
 - Merging datasets with the same schema
@@ -16,7 +16,7 @@ When It Appears in Interviews
 
 ---
 
-Core Template
+## Core Template
 
 ```sql
 -- UNION removes duplicates
@@ -41,7 +41,7 @@ All SELECT statements must:
 
 ---
 
-Core Set Operators
+## Core Set Operators
 
 1. UNION  
 Combines two result sets and removes duplicates.
@@ -94,7 +94,7 @@ SELECT * FROM staging_table;
 
 ---
 
-Pitfalls
+## Pitfalls
 - UNION performs a DISTINCT under the hood (can be slow)
 - Column order matters more than column names
 - NULL handling can differ across databases
@@ -103,7 +103,7 @@ Pitfalls
 
 ---
 
-Mini Example
+## Mini Example
 
 Table A (logins):
 

@@ -1,12 +1,12 @@
 # Gaps & Islands
 
-Definition
+## Definition
 The Gaps & Islands pattern is used to identify consecutive sequences of rows ("islands") and the gaps between them.
 It’s commonly applied to detect streaks, missing dates, sessionization, or periods of uninterrupted activity.
 
 ---
 
-When It Appears in Interviews
+## When It Typically Appears
 - Finding daily login streaks or activity periods
 - Detecting missing dates in a series
 - Sessionizing user activity or events
@@ -15,7 +15,7 @@ When It Appears in Interviews
 
 ---
 
-Core Template
+## Core Template
 The most common approach uses ROW_NUMBER() differences:
 
 ```sql
@@ -36,7 +36,7 @@ ROW_NUMBER() differences produce a constant value for each island.
 
 ---
 
-Variants
+## Variants
 1. LAG-based session detection:
 git 
 CASE 
@@ -50,7 +50,7 @@ END AS new_session;
 
 ---
 
-Pitfalls
+## Pitfalls
 - Off-by-one errors on date boundaries
 - Duplicate dates break the calculation
 - Timestamps may need truncation to dates
@@ -58,7 +58,7 @@ Pitfalls
 
 ---
 
-Mini Example
+## Mini Example
 
 WITH events AS (
     SELECT * FROM (VALUES

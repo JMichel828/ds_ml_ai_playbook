@@ -1,6 +1,6 @@
 # JSON Array Extraction
 
-Definition
+## Definition
 JSON array extraction is a SQL pattern used to read, expand, and analyze array-type fields stored in JSON or semi-structured columns.
 It allows you to extract individual elements, unnest arrays into rows, and access nested attributes for analytics and reporting.
 
@@ -8,7 +8,7 @@ This pattern is common in event logs, API payloads, product analytics, and moder
 
 ---
 
-When It Appears in Interviews
+## When It Typically Appears
 - Working with event payloads stored as JSON
 - Exploding arrays into rows (one-to-many expansion)
 - Extracting nested attributes for filtering or aggregation
@@ -17,7 +17,7 @@ When It Appears in Interviews
 
 ---
 
-Core Template (Extract Scalar Value)
+## Core Template (Extract Scalar Value)
 
 ```sql
 SELECT
@@ -45,7 +45,7 @@ This creates one output row per array element.
 
 ---
 
-Variants
+## Variants
 
 1. Extract by Array Index
 ```sql
@@ -77,7 +77,7 @@ UNNEST(json_array_column) AS item;
 
 ---
 
-Pitfalls
+## Pitfalls
 - Forgetting to unnest arrays leads to incorrect aggregations
 - JSON extraction functions vary by SQL engine
 - Type casting is often required for numeric operations
@@ -86,7 +86,7 @@ Pitfalls
 
 ---
 
-Mini Example
+## Mini Example
 
 Input Table:
 

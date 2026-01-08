@@ -1,13 +1,13 @@
 
 # Multi-Join Sequencing
 
-Definition
+## Definition
 Multi-Join Sequencing is a SQL pattern used to join the same or multiple tables in a specific temporal or logical order.
 It is commonly used when events, statuses, or records must be matched to the *correct* prior or next row based on time, rank, or condition.
 
 ---
 
-When It Appears in Interviews
+## When It Typically Appears
 - Matching events to the most recent prior record (e.g., last subscription before purchase)
 - Sequencing user actions across multiple tables
 - Attribution problems (which campaign, session, or state applied at the time?)
@@ -16,7 +16,7 @@ When It Appears in Interviews
 
 ---
 
-Core Template
+## Core Template
 The most common approach uses window functions with filtered joins:
 
 ```sql
@@ -42,7 +42,7 @@ This pattern ensures each row in `table_a` is matched to the *most relevant* row
 
 ---
 
-Variants
+## Variants
 1. Forward-looking sequencing (next event):
 ```sql
 ROW_NUMBER() OVER (
@@ -58,7 +58,7 @@ Join multiple CTEs, each resolving one step in the sequence.
 
 ---
 
-Pitfalls
+## Pitfalls
 - Missing join filters can cause row explosion
 - Incorrect ORDER BY leads to wrong attribution
 - Ties in timestamps require deterministic sorting
@@ -66,7 +66,7 @@ Pitfalls
 
 ---
 
-Mini Example
+## Mini Example
 
 WITH purchases AS (
     SELECT * FROM (VALUES

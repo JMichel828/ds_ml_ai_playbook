@@ -1,6 +1,6 @@
 # Recursive CTEs
 
-Definition
+## Definition
 A Recursive Common Table Expression (CTE) is a SQL pattern used to repeatedly execute a query
 until a condition is met. It is most often used to traverse hierarchical data, generate sequences,
 or solve problems that require iterative logic.
@@ -12,7 +12,7 @@ Recursive CTEs consist of:
 
 ---
 
-When It Appears in Interviews
+## When It Typically Appears
 - Working with hierarchical data (org charts, category trees)
 - Parent-child relationships
 - Generating sequences of numbers or dates
@@ -21,7 +21,7 @@ When It Appears in Interviews
 
 ---
 
-Core Template
+## Core Template
 
 ```sql
 WITH RECURSIVE cte_name AS (
@@ -53,7 +53,7 @@ The recursive member runs repeatedly until no new rows are returned.
 
 ---
 
-Variants
+## Variants
 
 1. Generating a Number Sequence
 ```sql
@@ -98,7 +98,7 @@ SELECT * FROM hierarchy;
 
 ---
 
-Pitfalls
+## Pitfalls
 - Forgetting a termination condition causes infinite recursion
 - UNION ALL is almost always required (UNION may remove rows)
 - Recursive queries can be slow on large hierarchies
@@ -107,7 +107,7 @@ Pitfalls
 
 ---
 
-Mini Example
+## Mini Example
 
 ```sql
 WITH RECURSIVE org AS (
