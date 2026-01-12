@@ -4,10 +4,9 @@
 
 This document is a **single-source reference** for regularization in machine learning.
 It combines **intuition, mathematical grounding, practical techniques, code examples,
-failure modes, and interview framing** into one markdown file.
+and failure modes** into one markdown file.
 
 Designed for:
-- Manager / Senior Manager interviews
 - Reviewing and stabilizing production models
 - Long-term ML reference
 - RAG ingestion (markdown-first corpus)
@@ -196,35 +195,3 @@ Managers should ask:
 - Does regularization reduce operational risk?
 - How sensitive is performance to lambda?
 
----
-
-## Interview Section
-
-### Common Questions
-- “Why does regularization help generalization?”
-- “L1 vs L2 — when would you choose each?”
-- “How does regularization relate to bias–variance?”
-
-### Strong Answer Pattern
-
-> “Regularization intentionally introduces bias to reduce variance,
-> improving out-of-sample performance and model stability.”
-
----
-
-## When Combined Files Make Sense
-
-Regularization works extremely well as a combined file because:
-- Theory and practice are tightly coupled
-- Code is illustrative, not exploratory
-- Interview questions emphasize intuition
-
----
-
-## Summary Checklist
-
-- [ ] I understand L1 vs L2
-- [ ] I know when to use Elastic Net
-- [ ] I can tune regularization safely
-- [ ] I understand tree and boosting regularization
-- [ ] I can explain regularization in interviews

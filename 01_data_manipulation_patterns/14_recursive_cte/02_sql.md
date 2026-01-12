@@ -17,7 +17,6 @@ Recursive CTEs consist of:
 - Parent-child relationships
 - Generating sequences of numbers or dates
 - Graph traversal problems
-- Medium to hard SQL interview questions
 
 ---
 

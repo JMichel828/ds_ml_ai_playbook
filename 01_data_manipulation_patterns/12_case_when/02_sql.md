@@ -1,6 +1,6 @@
 # CASE WHEN Logic
 
-Definition
+## Definition
 CASE WHEN is a SQL conditional expression used to apply branching logic within a query.
 It allows you to create derived columns, bucket values, apply conditional calculations,
 and encode business rules directly in SQL.
@@ -10,16 +10,15 @@ data categorization, scoring logic, and feature engineering.
 
 ---
 
-When It Appears in Interviews
+## When It Typically Appears
 - Creating categorical variables from numeric values
 - Applying business rules or flags
 - Conditional aggregation and pivots
 - Data cleaning and standardization
-- Almost guaranteed to appear in SQL interviews of all levels
 
 ---
 
-Core Template
+## Core Template
 
 ```sql
 CASE
@@ -33,7 +32,7 @@ The CASE expression is evaluated top-down; the first matching condition is retur
 
 ---
 
-Common Patterns
+## Common Patterns
 
 1. **Binary Flags**
 ```sql
@@ -70,7 +69,7 @@ END
 
 ---
 
-CASE WHEN Inside Aggregates
+## CASE WHEN Inside Aggregates
 Used heavily for conditional aggregation.
 
 ```sql
@@ -84,7 +83,7 @@ SUM(
 
 ---
 
-Variants
+## Variants
 
 1. Simple CASE
 ```sql
@@ -105,7 +104,7 @@ END
 
 ---
 
-Pitfalls
+## Pitfalls
 - Order matters: first matching condition wins
 - Missing ELSE returns NULL
 - Overlapping conditions cause unintended results
@@ -114,7 +113,7 @@ Pitfalls
 
 ---
 
-Mini Example
+## Mini Example
 
 ```sql
 WITH orders AS (

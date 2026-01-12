@@ -12,7 +12,6 @@ Typical use cases include latency analysis, compensation bands, spend distributi
 - Computing p90 / p95 / p99 latency metrics
 - Identifying outliers or long tails
 - Bucketing users into performance or spend tiers
-- Medium to hard SQL interview questions, often with window functions
 
 ---
 

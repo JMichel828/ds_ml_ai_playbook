@@ -16,7 +16,6 @@ running totals of aggregates, or percent-of-total calculations.
 - Percent-of-total or share-of-total calculations
 - Running totals of daily aggregates
 - Top-N per group with additional metrics
-- Advanced SQL interview questions (medium → hard)
 
 ---
 

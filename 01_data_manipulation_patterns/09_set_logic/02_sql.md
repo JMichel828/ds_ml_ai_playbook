@@ -12,7 +12,6 @@ The most common set operators are UNION, UNION ALL, INTERSECT, and EXCEPT (or MI
 - Identifying users who did one action but not another
 - Merging datasets with the same schema
 - Data reconciliation and QA checks
-- Medium SQL interview questions, sometimes deceptively simple
 
 ---
 

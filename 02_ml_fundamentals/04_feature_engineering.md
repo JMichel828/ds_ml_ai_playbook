@@ -3,11 +3,9 @@
 ## Purpose
 
 This document is a **single-source reference** for feature engineering.
-It combines **intuition, practical techniques, code examples, failure modes,
-and interview framing** into one markdown file.
+It combines **intuition, practical techniques, code examples, and failure modes** into one markdown file.
 
 Designed for:
-- Manager / Senior Manager interviews
 - Reviewing and improving real production models
 - Long-term ML reference
 - RAG ingestion (markdown-first corpus)
@@ -229,35 +227,3 @@ Managers should ask:
 - Do features encode business logic?
 - What breaks if data distribution shifts?
 
----
-
-## Interview Section
-
-### Common Questions
-- “What features matter most in this problem?”
-- “How do you avoid leakage?”
-- “How do trees reduce need for feature engineering?”
-
-### Strong Answer Pattern
-
-> “I focus first on leakage-safe aggregates and
-> domain-informed features before increasing model complexity.”
-
----
-
-## When Combined Files Make Sense
-
-Feature engineering is ideal for combined format because:
-- Code is illustrative
-- Explanation is critical
-- Interview framing relies on examples
-
----
-
-## Summary Checklist
-
-- [ ] I understand feature types
-- [ ] I know leakage risks
-- [ ] I can engineer temporal features safely
-- [ ] I can explain feature choices in interviews
-- [ ] I consider operational stability

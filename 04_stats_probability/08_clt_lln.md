@@ -114,8 +114,6 @@ This underpins:
 | Explains | Stability | Normality |
 | Enables | Reliable averages | CIs and tests |
 
-Managers often mix these up — interviewers test this explicitly.
-
 ---
 
 ## When CLT Fails (Important)
@@ -181,26 +179,3 @@ Failure mode:
 - Believing more data always fixes noise
 - Applying CLT to heavy-tailed metrics
 
----
-
-## Interview Guidance
-
-### How Interviewers Test This
-- “Why do experiments stabilize over time?”
-- “Why do confidence intervals work?”
-- “When does CLT fail?”
-
-### Strong Interview Framing
-
-> “LLN explains why averages stabilize,
-> CLT explains why we can model uncertainty around them.”
-
----
-
-## Summary Checklist
-
-- [ ] I understand LLN vs CLT clearly
-- [ ] I know what each guarantees and what it doesn’t
-- [ ] I can explain why tests and CIs work
-- [ ] I know when assumptions break
-- [ ] I connect this to real experiment behavior

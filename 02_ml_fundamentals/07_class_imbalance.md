@@ -4,10 +4,10 @@
 
 This document is a **single-source reference** for handling class imbalance in machine learning.
 It combines **intuition, statistical grounding, practical techniques, code examples,
-failure modes, and interview framing** into one markdown file.
+and failure modes** into one markdown file.
 
 Designed for:
-- Manager / Senior Manager interviews
+
 - Production model evaluation and risk mitigation
 - Long-term ML reference
 - RAG ingestion (markdown-first corpus)
@@ -198,35 +198,3 @@ Managers should ask:
 - What’s the cost of a miss?
 - How stable is performance across segments?
 
----
-
-## Interview Section
-
-### Common Questions
-- “How do you evaluate models with imbalanced classes?”
-- “Would you oversample or weight classes?”
-- “How do you choose thresholds?”
-
-### Strong Answer Pattern
-
-> “I align metrics and thresholds with business cost,
-> then use class weighting or resampling to control learning behavior.”
-
----
-
-## When Combined Files Make Sense
-
-Class imbalance is ideal for combined format because:
-- Metrics, thresholds, and cost are inseparable
-- Interview questions test judgment, not formulas
-- RAG systems need business context embedded
-
----
-
-## Summary Checklist
-
-- [ ] I avoid accuracy traps
-- [ ] I choose metrics intentionally
-- [ ] I tune thresholds with ops in mind
-- [ ] I understand resampling risks
-- [ ] I can explain imbalance clearly in interviews

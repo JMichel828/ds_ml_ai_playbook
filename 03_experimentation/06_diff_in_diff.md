@@ -133,10 +133,3 @@ fe_model.params["treated:post"]
 - Time-varying confounders
 - Anticipation effects
 
----
-
-# Interview Guidance
-
-> “I’d use DiD when randomization isn’t feasible,
-> validate parallel trends,
-> and include fixed effects.”

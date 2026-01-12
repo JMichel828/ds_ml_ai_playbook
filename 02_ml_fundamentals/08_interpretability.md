@@ -3,11 +3,9 @@
 ## Purpose
 
 This document is a **single-source reference** for model interpretability and explainability.
-It combines **intuition, practical techniques, code examples, failure modes,
-and interview framing** into one markdown file.
+It combines **intuition, practical techniques, code examples, and failure modes** into one markdown file.
 
 Designed for:
-- Manager / Senior Manager interviews
 - Reviewing and governing production ML systems
 - Communicating model behavior to stakeholders
 - RAG ingestion (markdown-first corpus)
@@ -155,8 +153,6 @@ Important distinction:
 - Feature importance ≠ causal effect
 - Explanations show *association*, not *intervention*
 
-Interviewers often test this explicitly.
-
 ---
 
 ## Using Interpretability in Practice
@@ -188,35 +184,3 @@ Managers should ask:
 - What decisions depend on explanations?
 - What regulatory requirements exist?
 
----
-
-## Interview Section
-
-### Common Questions
-- “How do you explain complex models?”
-- “SHAP vs permutation importance?”
-- “Can explanations be misleading?”
-
-### Strong Answer Pattern
-
-> “I choose interpretability methods based on audience and risk,
-> and I’m careful not to confuse explanation with causality.”
-
----
-
-## When Combined Files Make Sense
-
-Interpretability is ideal for combined format because:
-- Explanation without examples is useless
-- Code without context is dangerous
-- Interview questions emphasize judgment
-
----
-
-## Summary Checklist
-
-- [ ] I know global vs local explanations
-- [ ] I understand SHAP and PDP tradeoffs
-- [ ] I know explanation ≠ causation
-- [ ] I can communicate model behavior clearly
-- [ ] I recognize interpretability failure modes

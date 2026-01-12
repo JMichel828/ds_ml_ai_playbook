@@ -12,7 +12,6 @@ It is commonly used when events, statuses, or records must be matched to the *co
 - Sequencing user actions across multiple tables
 - Attribution problems (which campaign, session, or state applied at the time?)
 - Slowly changing attributes without full SCD tables
-- Medium to hard SQL interview questions
 
 ---
 

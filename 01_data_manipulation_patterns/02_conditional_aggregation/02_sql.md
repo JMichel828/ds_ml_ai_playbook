@@ -16,7 +16,6 @@ It’s used to pivot data, compute multiple metrics in one scan, or generate KPI
 - Time-window metrics (e.g., revenue in Q1 vs Q2)
 - Categorizing values into buckets and aggregating them
 - Calculating conditional counts (e.g., failures vs successes)
-- Nearly universal: appears in **easy, medium, and hard** SQL interviews
 
 ---
 

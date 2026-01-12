@@ -7,7 +7,6 @@ It focuses on **how ML systems break in practice**, why they break, and how stro
 anticipate and prevent these failures.
 
 Designed for:
-- Manager / Senior Manager interviews
 - Principal-level system thinking
 - Reviewing and debugging production ML systems
 - RAG ingestion (failure-pattern heavy, judgment-oriented)
@@ -200,44 +199,4 @@ Runaway bias or collapse.
 
 ML systems fail socially before they fail technically.
 
----
 
-## Interview Section
-
-### Common Questions
-- “Tell me about a model failure.”
-- “How do you prevent leakage?”
-- “How do you monitor models?”
-
-### Strong Answer Pattern
-
-> “I design systems with explicit failure assumptions,
-> monitor the right signals, and build rollback paths.”
-
----
-
-## Manager vs Principal Lens
-
-- **Manager**: process, guardrails, team habits
-- **Principal**: system-level risk, invariants, long-term drift
-
----
-
-## Why This Is Markdown-Only
-
-Failure modes:
-- Are conceptual
-- Span multiple systems
-- Require judgment over experimentation
-
-Notebooks add little value here.
-
----
-
-## Final Checklist
-
-- [ ] I assume models will fail
-- [ ] I design with leakage prevention
-- [ ] I monitor inputs, outputs, and decisions
-- [ ] I align metrics with business reality
-- [ ] I can explain failures clearly in interviews

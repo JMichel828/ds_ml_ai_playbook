@@ -3,7 +3,7 @@
 ## Definition
 
 Probability provides a **formal language for uncertainty**.
-In data science interviews, it underpins:
+In data science, it underpins:
 - experimentation
 - statistical inference
 - ML intuition
@@ -99,8 +99,6 @@ P(A | B) = P(A)
 
 Correlation ≠ dependence ≠ causation
 
-Many interview traps live here.
-
 ---
 
 ## Law of Total Probability
@@ -138,38 +136,4 @@ Used when:
 
 Bayes gets its own dedicated file next.
 
----
 
-## Common Interview Traps
-
-- Confusing P(A | B) with P(B | A)
-- Assuming independence without justification
-- Forgetting base rates
-- Mixing conditional and marginal probabilities
-
----
-
-# Interview-Focused Guidance
-
-## How Interviewers Test This
-
-- “Explain probability to a PM”
-- “Is this event independent?”
-- “What’s the chance given partial information?”
-
----
-
-## Strong Interview Framing
-
-> “I reason explicitly about sample space, conditioning, and independence
-> before doing any math.”
-
----
-
-## Interview Checklist
-
-- [ ] I can define probability clearly
-- [ ] I understand conditional probability
-- [ ] I know independence vs dependence
-- [ ] I can simulate probabilities
-- [ ] I avoid base rate fallacies

@@ -3,11 +3,9 @@
 ## Purpose
 
 This document is a **single-source reference** for hyperparameter tuning.
-It combines **intuition, practical strategies, code examples, failure modes,
-and interview framing** into one markdown file.
+It combines **intuition, practical strategies, code examples, and failure modes** into one markdown file.
 
 Designed for:
-- Manager / Senior Manager interviews
 - Designing reliable model training workflows
 - Long-term ML reference
 - RAG ingestion (markdown-first corpus)
@@ -187,9 +185,6 @@ Used when tuning and evaluating simultaneously.
 # Inner loop: hyperparameter tuning
 ```
 
-**Interview Insight**
-Avoids optimistic bias in reported metrics.
-
 ---
 
 ## Common Failure Modes
@@ -210,35 +205,3 @@ Managers should ask:
 - What is the compute cost vs expected gain?
 - Are gains statistically meaningful?
 
----
-
-## Interview Section
-
-### Common Questions
-- “Grid vs random search — why?”
-- “How do you avoid overfitting during tuning?”
-- “What is nested cross-validation?”
-
-### Strong Answer Pattern
-
-> “I treat tuning as a bias–variance and cost optimization problem,
-> using cross-validation and early stopping to avoid overfitting.”
-
----
-
-## When Combined Files Make Sense
-
-Hyperparameter tuning benefits from combined format because:
-- Concepts + code reinforce each other
-- Interview framing relies on intuition
-- RAG systems need full context
-
----
-
-## Summary Checklist
-
-- [ ] I understand tuning strategies
-- [ ] I can choose CV correctly
-- [ ] I avoid tuning leakage
-- [ ] I can explain tuning decisions clearly
-- [ ] I account for compute constraints

@@ -13,7 +13,6 @@ This pattern is common in event logs, API payloads, product analytics, and moder
 - Exploding arrays into rows (one-to-many expansion)
 - Extracting nested attributes for filtering or aggregation
 - Analytics on semi-structured data
-- Medium to hard SQL interview questions, especially for analytics and data engineering roles
 
 ---
 

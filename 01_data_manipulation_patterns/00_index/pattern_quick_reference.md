@@ -1,6 +1,6 @@
 ﻿# SQL & Pandas Pattern Quick Reference
 
-This file is a **high-level pattern index** designed for fast triage during interview questions.
+This file is a **high-level pattern index** designed for fast triage during coding work.
 Use it to quickly identify *which pattern* applies before diving into the detailed folders.
 
 ---
@@ -134,10 +134,9 @@ Use it to quickly identify *which pattern* applies before diving into the detail
 ---
 
 ## How to Use This File
-1. Read the interview question.
-2. Match the **signal language** to a pattern above.
-3. Check the **common pitfalls** to avoid mistakes.
-4. Jump into the corresponding pattern folder.
-5. Start with 1_notes.md, then 2_sql.md or 4_pandas.md.
+1. Match the **signal language** to a pattern above.
+2. Check the **common pitfalls** to avoid mistakes.
+3. Jump into the corresponding pattern folder.
+4. Start with 1_notes.md, then 2_sql.md or 4_pandas.md.
 
 This file is your **pattern decision map**.

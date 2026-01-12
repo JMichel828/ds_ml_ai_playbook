@@ -71,7 +71,7 @@ This is one of the most common sources of misinterpretation.
 
 ---
 
-## Worked Example 2: Simpson’s Paradox (High-Impact Interview Topic)
+## Worked Example 2: Simpson’s Paradox (High-Impact Topic)
 
 ```python
 import pandas as pd
@@ -194,27 +194,4 @@ Correct framing:
 - Mixing populations in comparisons
 - Over-indexing on accuracy metrics
 
----
 
-## Interview Guidance
-
-### How Interviewers Test This
-- “Explain Bayes to a PM”
-- “Why are most fraud alerts false?”
-- “Why did the aggregate metric change?”
-
-### Strong Interview Framing
-
-> “I always reason about the population first,  
-> then explicitly state what I’m conditioning on,  
-> and sanity-check with simulation when possible.”
-
----
-
-## Summary Checklist
-
-- [ ] I understand how conditioning changes interpretation
-- [ ] I can explain Bayes without formulas
-- [ ] I recognize base-rate fallacies
-- [ ] I know how this impacts experiments and models
-- [ ] I can communicate this clearly to stakeholders

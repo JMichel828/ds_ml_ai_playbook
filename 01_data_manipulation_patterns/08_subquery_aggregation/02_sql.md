@@ -17,8 +17,7 @@ This pattern is especially useful when:
 - Comparing row-level values to group-level aggregates
 - Finding rows above/below an average or threshold
 - Multi-step metric derivations
-- Common in medium SQL interview questions
-
+- 
 ---
 
 ## Core Template

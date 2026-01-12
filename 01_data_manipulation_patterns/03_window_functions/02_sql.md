@@ -11,7 +11,6 @@ Window functions perform calculations across a set of rows that are related to t
 - Calculating running totals or moving averages
 - Deduplicating rows with ROW_NUMBER()
 - Computing percentiles or distributions
-- Intermediate/advanced SQL interviews almost always include at least one window function question
 
 ---
 

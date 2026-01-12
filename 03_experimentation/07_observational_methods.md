@@ -38,8 +38,6 @@ This creates bias because:
 4. Instrumental Variables
 5. Synthetic Control (advanced)
 
-This file focuses on **commonly interviewed methods**.
-
 ---
 
 ## 1. Regression Adjustment
@@ -205,36 +203,4 @@ Examples:
 - Post-treatment covariates
 - Interpreting correlation as causation
 
----
 
-# Interview-Focused Guidance
-
-## How Interviewers Test This
-
-- “What if you can’t run an A/B test?”
-- “How would you adjust for confounding?”
-- “What assumptions are required?”
-
----
-
-## Strong Interview Framing
-
-> “Observational methods rely on strong assumptions.
-> I prefer randomized experiments, but when unavailable,
-> I use matching or regression while explicitly stating limitations.”
-
----
-
-## Company Context Examples
-
-- **Instacart**: pricing experiments without randomization
-- **Affirm**: policy changes with selection bias
-
----
-
-## Interview Checklist
-
-- [ ] I understand confounding
-- [ ] I can explain regression vs matching vs IPW
-- [ ] I know when results are biased
-- [ ] I can clearly state assumptions

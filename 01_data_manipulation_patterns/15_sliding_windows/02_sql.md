@@ -14,7 +14,6 @@ They are commonly used for rolling averages, rolling sums, and trend smoothing.
 - Moving sums for revenue or usage
 - Trend detection and smoothing
 - Time-series analytics
-- Medium SQL interview questions involving window functions
 
 ---
 

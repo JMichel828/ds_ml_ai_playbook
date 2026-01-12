@@ -11,7 +11,6 @@ It’s commonly applied to detect streaks, missing dates, sessionization, or per
 - Detecting missing dates in a series
 - Sessionizing user activity or events
 - Identifying continuous usage or subscription periods
-- Frequently appears in medium to hard SQL interview questions
 
 ---
 

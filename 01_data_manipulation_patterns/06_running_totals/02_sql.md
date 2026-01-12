@@ -11,7 +11,6 @@ They are commonly used for revenue-to-date, balances, cumulative counts, and tim
 - Tracking running balances or inventory
 - Generating cumulative user or event counts
 - Time-series growth and trend analysis
-- Common in easy to medium SQL interview questions
 
 ---
 

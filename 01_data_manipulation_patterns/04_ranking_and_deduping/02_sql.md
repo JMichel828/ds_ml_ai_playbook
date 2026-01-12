@@ -92,14 +92,6 @@ The most common technique uses `ROW_NUMBER()`.
 
 ---
 
-## When It Appears in Interviews
-- Removing duplicate user records
-- Keeping only the latest event per user
-- Choosing the highest-scoring row per group
-- Cleaning messy operational data
-
----
-
 ## Core Template (ROW_NUMBER)
 
 ```sql
@@ -130,7 +122,6 @@ ORDER BY user_id, event_timestamp DESC;
 ```
 
 ### GROUP BY + JOIN
-(less preferred in interviews)
 
 ---
 

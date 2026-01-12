@@ -15,7 +15,6 @@ These patterns are common in reporting, analytics, and feature engineering.
 - Converting category rows into KPI columns
 - Preparing data for dashboards or reports
 - Reversing pivoted data back into long format
-- Medium SQL interview questions, often combined with CASE WHEN
 
 ---
 
@@ -99,7 +98,6 @@ Use MAX instead of SUM when values are mutually exclusive.
 - Hardcoding categories reduces flexibility
 - NULL handling can affect aggregates
 - PIVOT / UNPIVOT syntax is not portable across all SQL engines
-- Dynamic pivots add complexity and are rarely expected in interviews
 
 ---
 

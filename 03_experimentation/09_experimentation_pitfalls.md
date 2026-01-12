@@ -14,7 +14,6 @@ Most bad decisions from experiments come from **design and execution errors**, n
 - Teams ship harmful features
 - Real effects are missed or exaggerated
 - Trust in experimentation erodes
-- Interviewers care deeply about *judgment* here
 
 Rule of thumb:
 > If you can’t explain how experiments fail, you don’t understand experiments.
@@ -200,37 +199,4 @@ Symptoms:
 - Asymmetric missing data
 - Segment-specific anomalies
 
----
 
-# Interview-Focused Guidance
-
-## How Interviewers Test This
-
-- “Why might an experiment be misleading?”
-- “What would make you distrust results?”
-- “What checks do you run before reading p-values?”
-
----
-
-## Strong Interview Framing
-
-> “I trust experiments only after validating assignment,
-> instrumentation, power, and metric definitions.
-> Statistics come last.”
-
----
-
-## Company Context Examples
-
-- **Instacart**: marketplace balance masking negative effects
-- **Affirm**: policy changes altering eligibility
-
----
-
-## Interview Checklist
-
-- [ ] I can name common failure modes
-- [ ] I know how to detect SRM
-- [ ] I understand peeking bias
-- [ ] I validate metrics before testing
-- [ ] I distrust results appropriately

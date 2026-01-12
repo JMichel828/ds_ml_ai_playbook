@@ -3,11 +3,9 @@
 ## Purpose
 
 This document is a **single-source reference** for core machine learning model families.
-It combines **intuition, mathematical grounding, practical tradeoffs, code examples,
-and interview framing** into one markdown file.
+It combines **intuition, mathematical grounding, practical tradeoffs, and code examples** into one markdown file.
 
 Designed for:
-- Manager / Senior Manager interviews
 - Reviewing model choices in real systems
 - Long-term ML reference
 - RAG ingestion (markdown-first corpus)
@@ -151,8 +149,6 @@ Prediction = average of nearby points.
 - Low bias, high variance (small k)
 - High bias, low variance (large k)
 
-Rarely used in production but common in interviews.
-
 ---
 
 ## Support Vector Machines (SVM)
@@ -222,35 +218,4 @@ Ask:
 - Overfitting leaderboard metrics
 - Underestimating maintenance cost
 
----
 
-## Interview Section
-
-### Common Questions
-- “Why use gradient boosting over random forests?”
-- “When would you choose logistic regression?”
-- “How do model families differ in bias–variance?”
-
-### Strong Answer Pattern
-
-> “I start with simple, interpretable baselines,
-> then move to more expressive models if the data
-> and business problem justify the added complexity.”
-
----
-
-## When Combined Files Make Sense
-
-Combined format is ideal here because:
-- Model choice is conceptual + practical
-- Code examples are illustrative, not exploratory
-- RAG systems benefit from unified context
-
----
-
-## Summary Checklist
-
-- [ ] I can explain core model families
-- [ ] I know their tradeoffs
-- [ ] I can justify model choice
-- [ ] I can discuss operational implications
